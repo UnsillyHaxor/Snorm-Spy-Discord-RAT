@@ -1,0 +1,7 @@
+# REQUIREMENTS : 
+pycryptodome
+discord.py
+pillow
+pywin32
+requests
+opencv-python
