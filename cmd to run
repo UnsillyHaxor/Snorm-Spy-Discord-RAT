@@ -1,1 +1,0 @@
-pip install requests pycryptodome discord.py pywin32 pillow opencv-python
