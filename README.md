@@ -16,3 +16,13 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN CMD AND EXECUTE THE COMMAND IN "
 
 
 edge and chrome.
+
+# CREDITS : 
+
+https://github.com/S-illy | Made it look cleaner and added commands regarding to bot.
+
+https://github.com/UnsillyHaxor | Made the main process. ( decrypting the passwords that are encrypted in AES and sending it to the discord webhook )
+
+https://discord.gg/3Q6nJQYgMB 
+
+https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
