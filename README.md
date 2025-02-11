@@ -1,7 +1,7 @@
 # Snorm-Spy-Discord-Stealer-
 Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snormware. 
 
-** TURN OFF ANTI VIRUS AS IT FLAGS IT **
+**TURN OFF ANTI VIRUS AS IT FLAGS IT**
 
 
 
