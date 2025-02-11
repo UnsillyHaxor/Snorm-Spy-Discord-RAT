@@ -1,5 +1,5 @@
 # Snorm-Spy-Discord-Stealer-
-Snorm Spy, Normal Discord Stealer.
+Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snormware.
 
 
 
