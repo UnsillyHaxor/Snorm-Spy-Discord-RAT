@@ -1,5 +1,7 @@
 # Snorm-Spy-Discord-Stealer-
-Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snormware.
+Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snormware. 
+
+** TURN OFF ANTI VIRUS AS IT FLAGS IT **
 
 
 
@@ -8,6 +10,7 @@ Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snor
 
 DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for it to download. Then open setup.py, put it in your webhook url and your bot token. It will then build the stealer and a new py file called built_main will be made. Once the file is made, "built_main" will be made but as an exe file, you can rename the exe file and if anyone opens the file, they get grabbed.
 
+**NOTE : MAKE SURE TO EXTRACT THE FOLDER**
 
 # THE BOT COMMANDS CONSIST OF : 
 
