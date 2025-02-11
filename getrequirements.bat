@@ -9,55 +9,62 @@ if %errorlevel% neq 0 (
     goto ERROR
 )
 
-title Checking libraries...
+title Downloading libraries...
 
-echo Checking 'customtkinter' (1/7)
+echo Checking 'customtkinter' (1/8)
 python -c "import customtkinter" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing customtkinter...
     python -m pip install customtkinter > nul
 )
 
-echo Checking 'pillow' (2/7)
+echo Checking 'pillow' (2/8)
 python -c "import PIL.Image" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing pillow...
     python -m pip install pillow > nul
 )
 
-echo Checking 'pyaes' (3/7)
+echo Checking 'pyaes' (3/8)
 python -c "import pyaes" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing pyaes...
     python -m pip install pyaes > nul
 )
 
-echo Checking 'urllib3' (4/7)
+echo Checking 'urllib3' (4/8)
 python -c "import urllib3" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing urllib3...
     python -m pip install urllib3 > nul
 )
 
-echo Checking 'pycryptodome' (5/7)
+echo Checking 'pycryptodome' (5/8)
 python -c "import Crypto" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing pycryptodome...
     python -m pip install pycryptodome > nul
 )
 
-echo Checking 'discord.py' (6/7)
+echo Checking 'discord.py' (6/8)
 python -c "import discord" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing discord.py...
     python -m pip install discord.py > nul
 )
 
-echo Checking 'opencv-python' (7/7)
+echo Checking 'opencv-python' (7/8)
 python -c "import cv2" > nul 2>&1
 if %errorlevel% neq 0 (
     echo Installing opencv-python...
     python -m pip install opencv-python > nul
+)
+
+echo Checking 'pyperclip' (8/8)
+python -c "import pyperclip" > nul 2>&1
+if %errorlevel% neq 0 (
+    echo Installing pyperclip...
+    python -m pip install pyperclip > nul
 )
 
 cls
