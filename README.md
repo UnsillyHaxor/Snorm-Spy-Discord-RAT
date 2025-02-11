@@ -24,7 +24,9 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 EDGE AND CHROME ARE SUPPORTED BROWSERS THAT CAN BE GRABBED.
 
 # PYTHON VERSIONS
-PYTHON 3.11 AND ABOVE
+PYTHON 3.11
+
+https://www.python.org/downloads/release/python-3110/
 
 # CREDITS : 
 
