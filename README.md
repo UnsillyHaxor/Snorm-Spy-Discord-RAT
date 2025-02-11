@@ -20,6 +20,9 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 
 edge and chrome.
 
+# PYTHON VERSIONS
+PYTHON 3.11 AND ABOVE
+
 # CREDITS : 
 
 https://github.com/S-illy | Made it look cleaner and added commands regarding to bot.
