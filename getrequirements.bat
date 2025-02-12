@@ -23,6 +23,7 @@ for %%A in (
     "opencv-python"
     "pyperclip"
     "pillow"
+    "uuid"
 ) do (
     echo Checking %%~A...
     python -c "import %%~A" >nul 2>&1
