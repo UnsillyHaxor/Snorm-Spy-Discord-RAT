@@ -24,6 +24,7 @@ for %%A in (
     "pyperclip"
     "pillow"
     "uuid"
+    "imageio"
 ) do (
     echo Checking %%~A...
     python -c "import %%~A" >nul 2>&1
