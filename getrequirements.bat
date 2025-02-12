@@ -39,7 +39,14 @@ for %%A in (
 )
 
 cls
-title Libraries installed successfully.
-echo All modules installed and up-to-date.
+title Snormy Spy Builder
+python setup.py
+if %errorlevel% neq 0 goto ERROR
+exit
+
+:ERROR
+color 4
+title [Error]
+echo An error occurred while running setup.py.
 pause
 exit
