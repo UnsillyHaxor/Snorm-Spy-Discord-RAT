@@ -17,6 +17,7 @@ import cv2
 import pyperclip
 import ctypes
 import win32com.client
+import uuid
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
