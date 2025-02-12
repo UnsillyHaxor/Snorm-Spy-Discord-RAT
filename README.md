@@ -25,6 +25,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 9. **UAC BYPASS**
 10. !forkbomb -- SPAMS NOTEPAD 1000 TIMES, FORK BOMBING THE PC 
 11. !hwid -- Takes the victims HWID
+12. !jumpscare -- Shows the image scarylarry.png on  their screen
 
 # SUPPORTED BROWSERS 
 
