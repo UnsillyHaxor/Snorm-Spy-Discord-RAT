@@ -56,4 +56,4 @@ https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
 - Add python to path
 - Do NOT install microsoft store python, i wouldn't work sometimes!!
 
-Please tell us if you have more problems, the program was tested by us! **( snormy and silly )
+Please tell us if you have more problems, the program was tested by us! **( snormy and silly )**
