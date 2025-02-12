@@ -46,3 +46,14 @@ https://github.com/UnsillyHaxor | Made the main process. ( decrypting the passwo
 https://discord.gg/3Q6nJQYgMB 
 
 https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
+
+# AUDIOOP IS NOT IMPORTED BLA BLA BLA ISSUE ( SILLY'S WORDS DOWN BELOW )
+
+ We are aware that you may experience problems with snorm spy
+# Potential solutions
+- Try executing the program manually with `python` not `python3`
+- Uninstall and install again the requirements **Manually** every req
+- Add python to path
+- Do NOT install microsoft store python, i wouldn't work sometimes!!
+
+Please tell us if you have more problems, the program was tested by us! **( snormy and silly )
