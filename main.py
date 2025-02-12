@@ -21,6 +21,7 @@ import subprocess
 import sys
 import ctypes
 import uuid
+import imageio
 from PIL import Image  
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
