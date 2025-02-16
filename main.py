@@ -46,7 +46,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
-RECORD_SECONDS = 300
+RECORD_SECONDS = 30
 AUDIO_FILE = "mic.wav"
 
 def record_audio():
@@ -485,7 +485,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
-RECORD_SECONDS = 300  
+RECORD_SECONDS = 30  
 AUDIO_FILE = "mic.wav"
 
 @bot.command()
