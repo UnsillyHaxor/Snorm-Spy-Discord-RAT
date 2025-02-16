@@ -27,6 +27,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 11. !hwid -- Takes the victims HWID
 12. !jumpscare -- Shows the image scarylarry.png on  their screen
 13. !mic -- Logs past 5 minutes of the victims mic ( after 5 minutes sends a wav file with the mic footage )
+14. !invite -- Shows invite link to your rat bot ( if u wanna add it to other servers
 
 # SUPPORTED BROWSERS 
 
