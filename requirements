@@ -1,7 +1,14 @@
-# REQUIREMENTS : 
 pycryptodome
 discord.py
 pillow
 pywin32
 requests
 opencv-python
+requests
+pyperclip 
+uuid 
+imageio 
+pywin32 
+pynput 
+pyaudio 
+wave
