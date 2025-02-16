@@ -60,3 +60,11 @@ https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
 - Do NOT install microsoft store python, i wouldn't work sometimes!!
 
 Please tell us if you have more problems, the program was tested by us! **( snormy and silly )**
+
+# DISCLAIMER :
+
+Information and code provided on this repository are for educational purposes only. The creator is no way responsible for any direct or indirect damage caused due to the misusage of the information. Everything you do, you are doing at your own risk and responsibility.
+
+# OTHER THINGS TO CONSIDER :
+
+**This was only made for showcasing lmao and distributing because thats how people get attraction**
