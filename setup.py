@@ -1,10 +1,8 @@
 import os
-import shutil
 import subprocess
 
 MAIN_SCRIPT_PATH = "main.py"
 BUILT_SCRIPT_PATH = "built_main.py"
-EXE_NAME = "built_main.exe"
 
 def get_input_from_user():
     token = input("Enter your bot token: ")
@@ -28,27 +26,11 @@ def build_script():
         file.write(script_content)
 
     print(f"✅ Built script saved as {BUILT_SCRIPT_PATH}")
-    convert_to_exe()
+    print("Opening YouTube tutorial for PyInstaller...")
 
-def convert_to_exe():
-    print("🚀 Converting to EXE...")
-    try:
-        subprocess.run(
-            ["pyinstaller", "--onefile", "--noconsole", BUILT_SCRIPT_PATH],
-            check=True
-        )
-
-        dist_path = os.path.join("dist", EXE_NAME)
-        if os.path.exists(dist_path):
-            shutil.move(dist_path, EXE_NAME)
-
-        shutil.rmtree("build", ignore_errors=True)
-        shutil.rmtree("dist", ignore_errors=True)
-        os.remove(f"{BUILT_SCRIPT_PATH}.spec")
-
-        print(f"✅ EXE created: {EXE_NAME}")
-    except Exception as e:
-        print(f"❌ Failed to create EXE: {e}")
+    
+    youtube_link = "https://youtu.be/2X9rxzZbYqg?si=E4U_ooHl8Q_YiIPK"  
+    subprocess.run(["python", "-m", "webbrowser", youtube_link])
 
 if __name__ == "__main__":
     build_script()
