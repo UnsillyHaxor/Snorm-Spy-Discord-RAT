@@ -480,6 +480,11 @@ async def jumpscare(ctx):
     else:
         await ctx.send("Failed to load the image.")
 
+@bot.command()
+async def invite(ctx):
+    invite_link = discord.utils.oauth_url(bot.user.id)
+    await ctx.send(f"Hehe: {invite_link}")
+
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
