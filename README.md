@@ -1,5 +1,5 @@
 # Snorm-Spy-Discord-Stealer-
-Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by SillyAss and Snormware. 
+Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by S-illy and Snormware. 
 
 **TURN OFF ANTI VIRUS AS IT FLAGS IT**
 
@@ -33,7 +33,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 
 # SUPPORTED BROWSERS 
 
-ALL CAN BE GRABBED DUE TO UPDATE ON 2/16/2025
+CHROME, BRAVE, EDGE, VIVALDI, OPERA, OPERA GX CAN BE GRABBED DUE TO UPDATE ON 2/16/2025
 
 # PYTHON VERSIONS
 PYTHON 3.11
@@ -50,16 +50,16 @@ https://discord.gg/3Q6nJQYgMB
 
 https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
 
-# AUDIOOP IS NOT IMPORTED BLA BLA BLA ISSUE ( SILLY'S WORDS DOWN BELOW )
+# AUDIOOP IS NOT IMPORTED BLA BLA BLA ISSUE ( S-ILLY'S WORDS DOWN BELOW )
 
  We are aware that you may experience problems with snorm spy
 # Potential solutions
 - Try executing the program manually with `python` not `python3`
 - Uninstall and install again the requirements **Manually** every req
 - Add python to path
-- Do NOT install microsoft store python, i wouldn't work sometimes!!
+- Do NOT install microsoft store python, it wouldn't work sometimes!!
 
-Please tell us if you have more problems, the program was tested by us! **( snormy and silly )**
+Please tell us if you have more problems, the program was tested by us! **( snormy and s-illy )**
 
 # DISCLAIMER :
 
