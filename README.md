@@ -35,6 +35,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 14. !wifi -- Takes WiFi Passwords
 15. !upload ( then a file no space btw ) -- Uploads and executes a file on victims PC
 16. !fakeerror -- Shows a fake error no limit btw u can spam
+17. !help -- Shows the commands list
 
 # SUPPORTED BROWSERS 
 
