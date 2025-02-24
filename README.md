@@ -77,4 +77,11 @@ Information and code provided on this repository are for educational purposes on
 
 # OTHER THINGS TO CONSIDER :
 
-**This was only made for showcasing lmao and distributing because thats how people get attraction**
+**This was only made for EDUCATIONAL PURPOSES and out of boredom**
+
+# SNORM SPY PREMIUM 
+
+**So, your interested in the best ratting experience? ( this is malicious bad whatever**
+**If so, join https://discord.gg/qT6x9wXf or dm snormware on discord for Snorm Spy Premium!**
+**NEW FEATURES : KEYLOGGER, DISABLE WIFI ADAPTER ( REQUIRES ADMINISTRATOR ), DISABLE ANTI VIRUS ( REQUIRES ADMINISTRATOR )**
+**PRICE : 2 BUCKS ( WE COULD DO 500 ROBUX TOO!**
