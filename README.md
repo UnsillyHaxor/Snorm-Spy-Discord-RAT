@@ -62,15 +62,15 @@ https://www.python.org/downloads/release/python-3110/
 
 # CREDITS : 
 
-https://github.com/S-illy | Made it look cleaner and added commands regarding to bot.
+https://github.com/S-illy | Made it look cleaner and added commands regarding to bot. ( but he's a dumbass and ratted me )
 
-https://github.com/UnsillyHaxor | Made the main process. ( decrypting the passwords that are encrypted in AES and sending it to the discord webhook )
+https://github.com/UnsillyHaxor | Made the main process. ( decrypting the passwords that are encrypted in AES and sending it to the discord webhook and THE CMDS. ( Silly made 4 )
 
 https://discord.gg/3Q6nJQYgMB 
 
-https://www.youtube.com/@snormware | https://www.youtube.com/@silIyass |
+https://www.youtube.com/@snormware |
 
-# AUDIOOP IS NOT IMPORTED BLA BLA BLA ISSUE ( S-ILLY'S WORDS DOWN BELOW )
+# AUDIOOP IS NOT IMPORTED BLA BLA BLA ISSUE
 
  We are aware that you may experience problems with snorm spy
 # Potential solutions
@@ -93,7 +93,6 @@ Information and code provided on this repository are for educational purposes on
 
 **This was only made for EDUCATIONAL PURPOSES and out of boredom**
 
-# SNORM SPY PREMIUM 
 
 **So, your interested in the best ratting experience? ( this is malicious bad whatever**
 **If so, join https://discord.gg/qT6x9wXf or dm snormware on discord for Snorm Spy Premium!**
