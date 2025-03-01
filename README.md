@@ -41,6 +41,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 20. !specs -- Get PC Specs
 21. !name -- Get Monitor and PC Username
 22. !discord -- Gets discord username ( useless tbh imo )
+23. !screen_record -- Records screen for a few seconds
 
 # SUPPORTED BROWSERS 
 
