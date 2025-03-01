@@ -43,6 +43,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 22. !discord -- Gets discord username ( useless tbh imo )
 23. !screen_record -- Records screen for **30 SECONDS**
 24. !network_adapter -- Disables WIFI ( admin required for this command to work )
+25. !disable_firewall -- Disables Firewall ( admin required for this command to work )
 
 # SUPPORTED BROWSERS 
 
