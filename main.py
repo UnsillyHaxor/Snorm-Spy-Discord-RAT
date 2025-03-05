@@ -711,7 +711,7 @@ async def discord(ctx):
 
         
         if not os.path.exists(discord_storage_path):
-            await ctx.send("Could not find Discord data. Is Discord installed?")
+            await ctx.send("Could not find Discord username.")
             return
 
         
