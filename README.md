@@ -1,5 +1,5 @@
 # SnormSpy Discord RAT
-Snorm Spy, **VERY GOOD** Discord Stealer made in **python** by S-illy and Snormware. 
+Snorm Spy, **VERY GOOD** Discord Stealer / RAT made in **python** by S-illy and Snormware. 
 
 **TURN OFF ANTI VIRUS AS IT FLAGS IT**
 
@@ -94,7 +94,4 @@ Information and code provided on this repository are for educational purposes on
 **This was only made for EDUCATIONAL PURPOSES and out of boredom**
 
 
-**So, your interested in the best ratting experience? ( this is malicious bad whatever**
-**If so, join https://discord.gg/qT6x9wXf or dm snormware on discord for Snorm Spy Premium!**
-**NEW FEATURES : KEYLOGGER, DISABLE WIFI ADAPTER ( REQUIRES ADMINISTRATOR ), DISABLE ANTI VIRUS ( REQUIRES ADMINISTRATOR )**
-**PRICE : 2 BUCKS ( WE COULD DO 500 ROBUX TOO!**
+**discord.gg/snormware**
