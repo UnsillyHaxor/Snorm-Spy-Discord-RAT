@@ -94,4 +94,10 @@ Information and code provided on this repository are for educational purposes on
 **This was only made for EDUCATIONAL PURPOSES and out of boredom**
 
 
+# LORE : 
+
+**THE DO NOT TOUCH FILE IS NOT MALWARE**
+**IF YOU OPEN IT IN NOTEPAD, IT SAYS PNG FIRST LINE it was supposed to be a cool img but got corrupted**
+
+
 **discord.gg/snormware**
