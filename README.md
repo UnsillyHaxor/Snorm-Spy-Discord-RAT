@@ -52,6 +52,7 @@ DOWNLOAD THE FILE AS A WHOLE ( AS A ZIP ). OPEN "getrequirements.bat", wait for 
 31. !kill ( pid ) -- Kills processes
 32. !bsod -- executes blue screen of death
 33. !bye -- deletes file off pc to hide traces
+34. !rstartup -- Removes from startup.
 
 # SUPPORTED BROWSERS 
 
