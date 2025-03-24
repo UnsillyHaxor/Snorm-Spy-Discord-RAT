@@ -18,7 +18,7 @@ def encode_values(token, webhook_url):
     return encoded_token, encoded_webhook_url
 
 def build_script():
-    # Get token and webhook from the user
+    
     token, webhook_url = get_input_from_user()
 
     
